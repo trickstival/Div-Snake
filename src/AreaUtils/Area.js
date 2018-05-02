@@ -27,16 +27,22 @@ export default class Area {
       case MOVES.LEFT: --newX;break;
     }
 
-    if(newY >= this.rows.length || newX >= this.rows[0].blocks.length
+    if(newY >= this.getHeight()  || newX >= this.getWidth()
       || newY < 0 || newX < 0) return
-
-    console.log(oldX, this.rows[0].blocks.length)
+    
     this.deactivate(oldY, oldX)
     this.activate(newY, newX)
 
+    console.log(newX, newY)
   }
   getBlock(x, y) {
     return this.rows[x].blocks[y]
+  }
+  getHeight() {
+    return this.rows.length
+  }
+  getWidth() {
+    return this.rows[0].blocks.length
   }
   render() {
     const renderedRows = this.rows.map(row => row.render())

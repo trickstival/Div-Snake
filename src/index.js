@@ -1,13 +1,18 @@
 import AreaBuilder from './AreaBuilder'
 import MOVES from './MOVES'
+import FrameworkInjector from './NPC/FrameworkInjector'
 
-setup()
+const ROWS_NUMBER = 20
+const COLUMNS_NUMBER = 20
 
-function setup() {
-  const area = AreaBuilder.build(20, 20)
+setupArea()
+
+function setupArea() {
+  const area = AreaBuilder.build(ROWS_NUMBER, COLUMNS_NUMBER)
   document.querySelector('#game').appendChild(area.render())
-  area.activate(10, 10)
 
+  area.activate(10, 10)
+  FrameworkInjector.injectOn(area)
   
   document.addEventListener('keydown', event => {
     const gottenKeycode = event.keyCode

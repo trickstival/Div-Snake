@@ -26,11 +26,22 @@ main#game {
 
 .block {
   height: 100%;
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: flex-end;
   background-color: blue;
   border: 1px dotted green;
+  transition: background-color .2s;
 }
 
 .block.block-active {
   background-color: grey;
+}
+
+.jsImage {
+  width: 50px;
+  height: 50px;
+  overflow: visible;
+  position: absolute;
+  margin: 0 auto;
 }

@@ -1,3 +1,5 @@
+import MOVES from '../MOVES'
+
 const jsImage = document.createElement('img')
 jsImage.src = 'src/assets/js.png'
 jsImage.className = 'jsImage'
@@ -7,17 +9,30 @@ export default class Block {
     this.y = rowNumber
     this.x = blockNumber
 
-    if(!rowNumber && !blockNumber) this.isHead = true
+    if (!rowNumber && !blockNumber) this.isHead = true
   }
   render() {
     this.renderedBlock = document.createElement('div')
 
     this.renderedBlock.className = 'block'
-    
+
     return this.renderedBlock
   }
-  spawn() {
-    // todo
+  to(movement) {
+    if(!this.row.area.rows[this.y+1] || !this.row.area.rows[this.y-1]) return
+    let nextBlock
+
+    switch (movement) {
+      case MOVES.DOWN: nextBlock = this.row.area.rows[this.y+=1].blocks[this.x]
+        break;
+      case MOVES.LEFT: nextBlock = this.row.blocks[this.x-=1]
+        break;
+      case MOVES.RIGHT: nextBlock = this.row.blocks[this.x+=1]
+        break;
+      case MOVES.UP: nextBlock = this.row.area.rows[this.y-=1].blocks[this.x]
+    }
+
+    return nextBlock
   }
   activate() {
     this.activated = 1

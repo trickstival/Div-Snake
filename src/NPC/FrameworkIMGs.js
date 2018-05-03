@@ -1,1 +1,1 @@
-export default 'angular ember jquery meteor mongoose react vue'.split(' ').map(f => 'src/frameworks/'+f+'.png')
+export default 'angular ember jquery meteor mongoose react vue'.split(' ').map(f => 'src/assets/frameworks/'+f+'.png')

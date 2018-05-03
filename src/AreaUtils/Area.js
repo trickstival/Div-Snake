@@ -17,7 +17,7 @@ export default class Area {
   }
   addNPC(npc, position) {
     const block = this.getBlock(position.x, position.y)
-    block.spawn(npc)
+    npc.goTo(block, true)
     this.npcs.push(npc)
   }
   move(direction = MOVES.RIGHT) {
@@ -64,6 +64,7 @@ export default class Area {
     return this.renderedArea
   }
   push(row) {
+    row.area = this
     this.rows.push(row)
   }
 }

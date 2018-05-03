@@ -1,6 +1,11 @@
 * {
   box-sizing: border-box;
 }
+
+#game {
+  padding: 40px;
+}
+
 body {
   margin: 0;
 }
@@ -40,9 +45,9 @@ main#game {
 }
 
 .jsImage {
-  width: 70px;
-  height: 70px;
+  width: 100%;
+  height: 150%;
   overflow: visible;
-  position: absolute;
+  position: relative;
   margin: 0 auto;
 }

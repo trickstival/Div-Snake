@@ -1,4 +1,5 @@
 import FrameworkIMGs from './FrameworkIMGs'
+import { randomMove } from '../MOVES'
 
 export default class NPC {
   constructor() {
@@ -12,14 +13,33 @@ export default class NPC {
 
     FrameworkIMGs.splice(FrameworkIMGs.indexOf(actualURL), 1)
   }
-  spawnAt(block) {
+  goTo(block, spawn) {
+    this.removeElement()
+
+    if(spawn) {
+      this.startToWalk()
+    }
+    block.renderedBlock.appendChild(this.element)
     this.actualBlock = block
-    // todo
   }
-  
+  startToWalk() {
+    setInterval(() => {
+      const move = randomMove()
+      if(this.element.src === 'http://127.0.0.1:5500/src/assets/frameworks/vue.png') console.log(move)
+      const nextBlock = this.actualBlock.to(move)
+      if(!nextBlock) return
+      this.goTo(nextBlock)
+    }, 100)
+  }
+  removeElement() {
+    if(!this.element.parentElement) {
+      return
+    }
+    this.element.parentElement.removeChild(this.element)
+  }
   die() {
     FrameworkIMGs.push(this.element.src)
-    this.element.parentElement.removeChild(this.element)
+    this.removeElement()
     this.element = null
   }
 }

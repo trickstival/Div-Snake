@@ -3,6 +3,7 @@ import MOVES from '../MOVES'
 export default class Area {
   constructor(rows = []) {
     this.rows = rows
+    this.npcs = []
     this.render()
   }
   activate(x, y) {
@@ -13,6 +14,11 @@ export default class Area {
   deactivate(x, y) {
     const block = this.getBlock(x, y)
     block.deactivate()
+  }
+  addNPC(npc, position) {
+    const block = this.getBlock(position.x, position.y)
+    block.spawn(npc)
+    this.npcs.push(npc)
   }
   move(direction = MOVES.RIGHT) {
     let oldX = this.activeBlock.x, 

@@ -15,7 +15,8 @@ main#game {
 .area {
   width: 100%;
   height: 100%;
-  background-color: red;
+  background-image: url("src/assets/fundo.jpeg");
+  background-size: 100%;
   padding: 2px;
 }
 
@@ -29,18 +30,18 @@ main#game {
   display: inline-flex;
   justify-content: center;
   align-items: flex-end;
-  background-color: blue;
+  background-color: transparent;
   border: 1px dotted green;
   transition: background-color .2s;
 }
 
 .block.block-active {
-  background-color: grey;
+  background-color: rgba(120, 120, 120, .5);
 }
 
 .jsImage {
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   overflow: visible;
   position: absolute;
   margin: 0 auto;

@@ -4,6 +4,7 @@ export default class Row {
     this.rowNumber = rowNumber
   }
   push(block) {
+    block.row = this
     this.blocks.push(block)
   }
   render() {

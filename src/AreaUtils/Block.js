@@ -16,6 +16,9 @@ export default class Block {
     
     return this.renderedBlock
   }
+  spawn() {
+    // todo
+  }
   activate() {
     this.activated = 1
     this.renderedBlock.classList.add('block-active')

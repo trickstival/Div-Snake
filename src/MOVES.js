@@ -7,10 +7,3 @@ const moves = {
 }
 
 export default moves
-
-export const randomMove = () => {
-  const keys = Object.keys(moves)
-  keys.splice(keys.indexOf(moves[moves.NONE]), 1)
-  const movePosition = Math.floor(Math.random() * keys.length, 1)
-  return moves[keys[movePosition]]
-}

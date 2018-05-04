@@ -1,5 +1,5 @@
 import FrameworkIMGs from './FrameworkIMGs'
-import { randomMove } from '../MOVES'
+import BlockOracle from './BlockUtils/BlockOracle'
 
 export default class NPC {
   constructor() {
@@ -10,6 +10,8 @@ export default class NPC {
     this.element = document.createElement('img')
     this.element.src = actualURL
     this.element.className = 'jsImage'
+
+    this.oracle = new BlockOracle()
 
     FrameworkIMGs.splice(FrameworkIMGs.indexOf(actualURL), 1)
   }
@@ -24,7 +26,8 @@ export default class NPC {
   }
   startToWalk() {
     setInterval(() => {
-      const move = randomMove()
+      // const move = oracle.randomMove()
+      const move = this.oracle.guideMe(this.actualBlock)
       if(this.element.src === 'http://127.0.0.1:5500/src/assets/frameworks/vue.png') console.log(move)
       const nextBlock = this.actualBlock.to(move)
       if(!nextBlock) return

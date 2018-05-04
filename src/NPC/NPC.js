@@ -17,7 +17,7 @@ export default class NPC {
     this.removeElement()
 
     if(spawn) {
-      this.startToWalk()
+      // this.startToWalk()
     }
     block.renderedBlock.appendChild(this.element)
     this.actualBlock = block

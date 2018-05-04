@@ -14,7 +14,6 @@ export default class Row {
     this.renderedRow.className = 'row'
     renderedBlocks.forEach((block) => {
       this.renderedRow.appendChild(block)
-      block.style.width = `${100 / (renderedBlocks.length)}%`
     })
 
     return this.renderedRow

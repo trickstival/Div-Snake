@@ -19,7 +19,7 @@ export default class NPC {
     this.removeElement()
 
     if(spawn) {
-      // this.startToWalk()
+      this.startToWalk()
     }
     block.renderedBlock.appendChild(this.element)
     this.actualBlock = block
@@ -28,8 +28,8 @@ export default class NPC {
     setInterval(() => {
       // const move = oracle.randomMove()
       const move = this.oracle.guideMe(this.actualBlock)
-      if(this.element.src === 'http://127.0.0.1:5500/src/assets/frameworks/vue.png') console.log(move)
-      const nextBlock = this.actualBlock.to(move)
+      // if(this.element.src === 'http://127.0.0.1:5500/src/assets/frameworks/vue.png') console.log(move)
+      const nextBlock = move.block
       if(!nextBlock) return
       this.goTo(nextBlock)
     }, 100)

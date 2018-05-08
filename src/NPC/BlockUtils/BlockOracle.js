@@ -64,25 +64,33 @@ export default class BlockOracle {
     else if (toMyBottom && toMyLeft) moveTo('Downleft')
     else if (toMyBottom && toMyRight) moveTo('DownRight')
 
-    return remainingBlocks.filter(n => n)
+    return remainingBlocks
   }
   findNextBlock(actualBlock, destinationBlock) {    
     const alternatives = this.wayBlocks(actualBlock, destinationBlock)
+    // console.log(alternatives.length)
     const quota = this.randomQuota(alternatives.length)
     return alternatives[quota]
   }
-  guideMe(actualBlock) {
+  guideMe(actualBlock, src) {
     const area = actualBlock.row.area
 
     if(this.blockFound) {
       this.destinationBlock = this.randomBlock(area)
       this.blockFound = false
+      return
     }
     
     const nextBlock = this.findNextBlock(actualBlock, this.destinationBlock)
+    if(!nextBlock) {
+      this.destinationBlock = this.randomBlock(area)
+      return
+    }
     if(nextBlock.block === this.destinationBlock) {
       this.blockFound = true
     }
+
+    // if(src === 'http://127.0.0.1:5500/src/assets/frameworks/vue.png') console.log('block:', actualBlock, 'this:', this,)
 
     return nextBlock
   }

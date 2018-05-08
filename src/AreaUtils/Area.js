@@ -20,6 +20,15 @@ export default class Area {
     npc.goTo(block, true)
     this.npcs.push(npc)
   }
+  getNPCsAt(position) {
+    const block = this.getBlock(position.x, position.y)
+    return this.npcs.filter(npc => npc.actualBlock === block)
+  }
+  captureNPCsAt(position) {
+    const npcs = this.getNPCsAt(position)
+    console.log('npcs', this.npcs)
+    npcs.forEach(npc => npc.die())
+  }
   move(direction = MOVES.RIGHT) {
     let oldX = this.activeBlock.x, 
       oldY = this.activeBlock.y,
@@ -37,6 +46,7 @@ export default class Area {
       || newY < 0 || newX < 0) return
     
     this.deactivate(oldY, oldX)
+    this.captureNPCsAt({x: newX, y: newY})
     this.activate(newY, newX)
 
     console.log(newX, newY)

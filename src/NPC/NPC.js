@@ -10,6 +10,7 @@ export default class NPC {
     this.element = document.createElement('img')
     this.element.src = actualURL
     this.element.className = 'jsImage'
+    console.log('criooou', this.element)
 
     this.oracle = new BlockOracle()
 
@@ -18,31 +19,35 @@ export default class NPC {
   goTo(block, spawn) {
     this.removeElement()
 
-    if(spawn) {
+    if (spawn) {
       this.startToWalk()
     }
+    let listener = block.renderedBlock.addEventListener('loaded', () => {
+      this.actualBlock = block
+      block.removeEventListener(listener)
+    })
     block.renderedBlock.appendChild(this.element)
-    this.actualBlock = block
   }
   startToWalk() {
-    setInterval(() => {
-      // const move = oracle.randomMove()
-      const move = this.oracle.guideMe(this.actualBlock)
-      // if(this.element.src === 'http://127.0.0.1:5500/src/assets/frameworks/vue.png') console.log(move)
+    this.interval = setInterval(async () => {
+      const move = this.oracle.guideMe(this.actualBlock, this.element.src)
+      if(!move) return
+
       const nextBlock = move.block
-      if(!nextBlock) return
-      this.goTo(nextBlock)
-    }, 100)
+      if (!nextBlock) return
+      return this.goTo(nextBlock)
+    }, 1000)
+
   }
   removeElement() {
-    if(!this.element.parentElement) {
+    if (!this.element.parentElement) {
       return
     }
     this.element.parentElement.removeChild(this.element)
   }
   die() {
+    clearInterval(this.interval)
     FrameworkIMGs.push(this.element.src)
     this.removeElement()
-    this.element = null
   }
 }

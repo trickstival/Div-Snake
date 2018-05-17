@@ -18,6 +18,7 @@ main#game {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column-reverse;
 }
 
 .area {

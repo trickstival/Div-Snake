@@ -26,7 +26,6 @@ export default class Area {
   }
   captureNPCsAt(position) {
     const npcs = this.getNPCsAt(position)
-    console.log('npcs', this.npcs)
     npcs.forEach(npc => npc.die())
   }
   move(direction = MOVES.RIGHT) {
@@ -45,14 +44,14 @@ export default class Area {
     if(newY >= this.getHeight()  || newX >= this.getWidth()
       || newY < 0 || newX < 0) return
     
-    this.deactivate(oldY, oldX)
-    // this.captureNPCsAt({x: newX, y: newY})
-    this.activate(newY, newX)
+    this.deactivate(oldX, oldY)
+    this.captureNPCsAt({x: newX, y: newY})
+    this.activate(newX, newY)
 
-    console.log(newX, newY)
+    // console.log(newX, newY)
   }
   getBlock(x, y) {
-    return this.rows[x].blocks[y]
+    return this.rows[y].blocks[x]
   }
   getHeight() {
     return this.rows.length

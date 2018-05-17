@@ -24,8 +24,8 @@ export default class NPC {
       this.actualBlock = block
       block.removeEventListener(listener)
     })
-    this.actualBlock = block
     block.renderedBlock.appendChild(this.element)
+    this.actualBlock = block
   }
   startToWalk() {
     this.interval = setInterval(() => {
@@ -34,18 +34,22 @@ export default class NPC {
       const nextBlock = move.block
       if (!nextBlock) return
       return this.goTo(nextBlock)
-    }, 100)
+    }, 200)
 
   }
   removeElement() {
     if (!this.element.parentElement) {
       return
     }
-    this.element.parentElement.removeChild(this.element)
+    this.element.remove()
   }
   die() {
     clearInterval(this.interval)
     FrameworkIMGs.push(this.element.src)
+    const npcs = this.actualBlock.row.area.npcs
+    let idx = npcs.indexOf(this)
+    if(idx === -1) return
+    npcs.splice(idx, 1)
     this.removeElement()
   }
 }

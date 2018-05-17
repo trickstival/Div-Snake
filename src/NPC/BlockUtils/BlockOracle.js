@@ -89,7 +89,7 @@ export default class BlockOracle {
       this.blockFound = true
     }
 
-    // if(src === 'http://127.0.0.1:5500/src/assets/frameworks/vue.png') console.log('block:', actualBlock, 'this:', this,)
+    // if(src === 'http://localhost:5500/src/assets/frameworks/vue.png') console.log('block:', actualBlock, 'this:', this,)
     return nextBlock
   }
 }

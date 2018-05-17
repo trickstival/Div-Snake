@@ -10,7 +10,6 @@ export default class NPC {
     this.element = document.createElement('img')
     this.element.src = actualURL
     this.element.className = 'jsImage'
-    console.log('criooou', this.element)
 
     this.oracle = new BlockOracle()
 
@@ -18,7 +17,6 @@ export default class NPC {
   }
   goTo(block, spawn) {
     this.removeElement()
-
     if (spawn) {
       this.startToWalk()
     }
@@ -26,17 +24,17 @@ export default class NPC {
       this.actualBlock = block
       block.removeEventListener(listener)
     })
+    this.actualBlock = block
     block.renderedBlock.appendChild(this.element)
   }
   startToWalk() {
-    this.interval = setInterval(async () => {
+    this.interval = setInterval(() => {
       const move = this.oracle.guideMe(this.actualBlock, this.element.src)
       if(!move) return
-
       const nextBlock = move.block
       if (!nextBlock) return
       return this.goTo(nextBlock)
-    }, 1000)
+    }, 100)
 
   }
   removeElement() {

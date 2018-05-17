@@ -46,7 +46,7 @@ export default class Area {
       || newY < 0 || newX < 0) return
     
     this.deactivate(oldY, oldX)
-    this.captureNPCsAt({x: newX, y: newY})
+    // this.captureNPCsAt({x: newX, y: newY})
     this.activate(newY, newX)
 
     console.log(newX, newY)

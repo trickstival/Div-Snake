@@ -68,7 +68,6 @@ export default class BlockOracle {
   }
   findNextBlock(actualBlock, destinationBlock) {    
     const alternatives = this.wayBlocks(actualBlock, destinationBlock)
-    // console.log(alternatives.length)
     const quota = this.randomQuota(alternatives.length)
     return alternatives[quota]
   }
@@ -91,7 +90,6 @@ export default class BlockOracle {
     }
 
     // if(src === 'http://127.0.0.1:5500/src/assets/frameworks/vue.png') console.log('block:', actualBlock, 'this:', this,)
-
     return nextBlock
   }
 }

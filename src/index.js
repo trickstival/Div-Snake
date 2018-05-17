@@ -1,6 +1,7 @@
 import AreaBuilder from './AreaBuilder'
 import MOVES from './MOVES'
 import FrameworkInjector from './NPC/FrameworkInjector'
+import lvl1 from './maps/lvl1'
 
 const ROWS_NUMBER = 20
 const COLUMNS_NUMBER = 20
@@ -8,7 +9,7 @@ const COLUMNS_NUMBER = 20
 setupArea()
 
 function setupArea() {
-  const area = AreaBuilder.build(ROWS_NUMBER, COLUMNS_NUMBER)
+  const area = AreaBuilder.build(lvl1)
   document.querySelector('#game').appendChild(area.render())
 
   area.activate(10, 10)

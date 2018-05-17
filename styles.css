@@ -23,7 +23,7 @@ main#game {
 .area {
   width: 100%;
   height: 100%;
-  background-image: url("src/assets/fundo.jpeg");
+  /* background-image: url("src/assets/fundo.jpeg"); */
   background-size: 100%;
   padding: 2px;
 }
@@ -72,4 +72,8 @@ main#game {
   width: 200px;
   height: 50px;
   cursor: pointer;
+}
+
+.blocked-block {
+  background-color: brown;
 }

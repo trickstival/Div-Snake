@@ -14,7 +14,11 @@ export default class Block {
   render() {
     this.renderedBlock = document.createElement('div')
 
-    this.renderedBlock.className = 'block'
+    this.renderedBlock.classList.add('block')
+
+    if(this.status === '1') {
+      this.renderedBlock.classList.add('blocked-block')
+    }
 
     return this.renderedBlock
   }
@@ -43,5 +47,8 @@ export default class Block {
     this.activated = 0
     this.renderedBlock.classList.remove('block-active')
     this.renderedBlock.removeChild(jsImage)
+  }
+  setStatus(status) {
+    this.status = status
   }
 }

@@ -22,7 +22,7 @@ export default class BlockOracle {
 
     const block = area.rows[y].blocks[x]
     // console.log(block)
-    return block
+    return block.status === '1' ? this.randomBlock(area) : block
   }
   touchingBlocks(block) {
     const touchingBlocks = []
@@ -34,7 +34,7 @@ export default class BlockOracle {
       const possibleRow = area.rows[move.y]
       if(!possibleRow) return null
       const possibleBlock = possibleRow.blocks[move.x]
-      if(!possibleBlock) return null
+      if(!possibleBlock || possibleBlock.status === '1') return null
 
       const retorno = {
         name: move.name,

@@ -3,22 +3,25 @@ import Row from './AreaUtils/Row'
 import Area from './AreaUtils/Area'
 
 export default {
-  build(width, height) {
+  build(map) {
     const area = new Area()
 
     // Building rows
-    for(let i=0;i<height;i++) {
-      const row = new Row(i)
+    map.rows.forEach((row, i) => {
+      const rowObj = new Row(i)
+
+      const blocks = row.split('')
 
       // Building blocks
-      for(let j=0;j<width;j++) {
-        const block = new Block(i, j)
-        row.push(block)
-      }
+      blocks.forEach((status, j) => {
+        const blockObj = new Block(i, j)
+        blockObj.setStatus(status)
+        rowObj.push(blockObj)
+      })
 
-      area.push(row)
-    }
-
+      area.push(rowObj)
+    })
+    
     return area
   }
 }

@@ -42,7 +42,7 @@ export default class Area {
     }
 
     if(newY >= this.getHeight()  || newX >= this.getWidth()
-      || newY < 0 || newX < 0) return
+      || newY < 0 || newX < 0 || this.getBlock(newX, newY).status === '1') return
     
     this.deactivate(oldX, oldY)
     this.captureNPCsAt({x: newX, y: newY})

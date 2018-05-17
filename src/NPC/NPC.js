@@ -35,7 +35,7 @@ export default class NPC {
       const nextBlock = move.block
       if (!nextBlock) return
       return this.goTo(nextBlock)
-    }, 200)
+    }, 100)
 
   }
   removeElement() {

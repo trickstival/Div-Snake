@@ -15,11 +15,8 @@ export default class NPC {
 
     FrameworkIMGs.splice(FrameworkIMGs.indexOf(actualURL), 1)
   }
-  goTo(block, spawn) {
+  goTo(block) {
     this.removeElement()
-    if (spawn) {
-      this.startToWalk()
-    }
     let listener = block.renderedBlock.addEventListener('loaded', () => {
       this.actualBlock = block
       block.removeEventListener(listener)

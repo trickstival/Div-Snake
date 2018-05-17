@@ -13,10 +13,19 @@ function setupArea() {
 
   area.activate(10, 10)
   FrameworkInjector.injectOn(area)
-  
+
   document.addEventListener('keydown', event => {
     const gottenKeycode = event.keyCode
     const validatedKeycode = Object.values(MOVES).filter(v => v === gottenKeycode)[0]
-    if(validatedKeycode) area.move(validatedKeycode)
+    if (validatedKeycode) area.move(validatedKeycode)
+  })
+
+  const btnGo = document.getElementById('btn-go')
+  const readyTile = document.getElementById('ready-tile')
+
+  btnGo.addEventListener('click', () => {
+    area.npcs.forEach(npc => npc.startToWalk())
+    readyTile.style.display = 'none'
   })
 }
+

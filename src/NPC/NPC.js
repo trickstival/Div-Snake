@@ -45,6 +45,7 @@ export default class NPC {
     this.element.remove()
   }
   die() {
+    console.log('dying')
     clearInterval(this.interval)
     FrameworkIMGs.push(this.element.src)
     this.actualBlock.renderedBlock.classList.add('eating')

@@ -1,10 +1,12 @@
 import MOVES from '../MOVES'
+import Timer from './Area/Timer'
 
 export default class Area {
   constructor(rows = []) {
     this.rows = rows
     this.npcs = []
     this.render()
+    this.Timer = Timer
   }
   activate(x, y) {
     const block = this.getBlock(x, y)
@@ -28,9 +30,19 @@ export default class Area {
     const npcs = this.getNPCsAt(position)
     npcs.forEach(npc => npc.die())
     if(!this.npcs.length) this.win()
+
+    const scoreNum = document.getElementById('score-number')
+    scoreNum.innerHTML = +scoreNum.innerHTML + npcs.length
   }
   win() {
+    this.Timer.cancel()
     alert('You won!')
+  }
+  lose() {
+    [...this.npcs].forEach(npc => {
+      npc.die()
+    })
+    alert('You lost!')
   }
   move(direction = MOVES.RIGHT) {
     let oldX = this.activeBlock.x, 

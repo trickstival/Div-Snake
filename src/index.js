@@ -28,5 +28,7 @@ function setupArea() {
   btnGo.addEventListener('click', () => {
     area.npcs.forEach(npc => npc.startToWalk())
     readyTile.style.display = 'none'
+    area.Timer.makeItATimer(document.getElementById('timer-number'))
+    area.Timer.startCounting(120).then(() => area.lose())
   })
 }

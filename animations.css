@@ -1,0 +1,15 @@
+.eating::after {
+  content: 'Eat!';
+  position: absolute;
+  color: yellow;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 24px;
+}
+
+.dribbled::after {
+  content: 'Dribbled!';
+  position: absolute;
+  color: green;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 24px;
+}

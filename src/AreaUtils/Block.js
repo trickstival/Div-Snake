@@ -46,7 +46,7 @@ export default class Block {
   deactivate() {
     this.activated = 0
     this.renderedBlock.classList.remove('block-active')
-    this.renderedBlock.removeChild(jsImage)
+    jsImage.remove()
   }
   setStatus(status) {
     this.status = status

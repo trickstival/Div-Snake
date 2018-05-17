@@ -27,6 +27,10 @@ export default class Area {
   captureNPCsAt(position) {
     const npcs = this.getNPCsAt(position)
     npcs.forEach(npc => npc.die())
+    if(!this.npcs.length) this.win()
+  }
+  win() {
+    alert('You won!')
   }
   move(direction = MOVES.RIGHT) {
     let oldX = this.activeBlock.x, 

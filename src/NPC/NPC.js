@@ -22,6 +22,10 @@ export default class NPC {
       block.removeEventListener(listener)
     })
     block.renderedBlock.appendChild(this.element)
+    if(block.activated) {
+      block.renderedBlock.classList.add('dribbled')
+      setTimeout(() => block.renderedBlock.classList.remove('dribbled'), 500)
+    } 
     this.actualBlock = block
   }
   startToWalk() {
@@ -43,6 +47,10 @@ export default class NPC {
   die() {
     clearInterval(this.interval)
     FrameworkIMGs.push(this.element.src)
+    this.actualBlock.renderedBlock.classList.add('eating')
+    setTimeout(() => 
+      this.actualBlock.renderedBlock.classList.remove('eating'),
+    500)
     const npcs = this.actualBlock.row.area.npcs
     let idx = npcs.indexOf(this)
     if(idx === -1) return

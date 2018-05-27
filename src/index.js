@@ -9,8 +9,10 @@ const COLUMNS_NUMBER = 20
 
 setupArea()
 
-function setupArea() {
+export function setupArea() {
   const area = AreaBuilder.build(lvl1)
+  const areaL = document.getElementById('area-l')
+  if (areaL) areaL.remove()
   document.querySelector('#game').appendChild(area.render())
 
   area.activate(10, 10)
@@ -20,10 +22,11 @@ function setupArea() {
     const gottenKeycode = event.keyCode
     const lastKey = Object.values(MOVES).filter(v => v === gottenKeycode)[0]
     if (lastKey) area.move(lastKey)
-  }, 70))
+  }, 50))
 
   const btnGo = document.getElementById('btn-go')
   const readyTile = document.getElementById('ready-tile')
+  readyTile.style.display = 'block'
 
   btnGo.addEventListener('click', () => {
     area.npcs.forEach(npc => npc.startToWalk())

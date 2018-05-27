@@ -1,5 +1,6 @@
 import MOVES from '../MOVES'
 import Timer from './Area/Timer'
+import { setupArea } from '../index'
 
 export default class Area {
   constructor(rows = []) {
@@ -37,12 +38,14 @@ export default class Area {
   win() {
     this.Timer.cancel()
     alert('You won!')
+    setupArea()
   }
   lose() {
     [...this.npcs].forEach(npc => {
       npc.die()
     })
     alert('You lost!')
+    setupArea()
   }
   move(direction = MOVES.RIGHT) {
     let oldX = this.activeBlock.x, 
@@ -79,6 +82,7 @@ export default class Area {
     const renderedRows = this.rows.map(row => row.render())
     
     this.renderedArea = document.createElement('div')
+    this.renderedArea.id = 'area-l'
     this.renderedArea.className = 'area'
 
     renderedRows.forEach((row) => {
